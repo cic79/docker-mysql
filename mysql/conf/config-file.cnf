@@ -1,0 +1,53 @@
+[mysqld]
+default-storage-engine = InnoDB
+auto_increment_increment = 1
+auto_increment_offset = 1
+character_set_client_handshake = false
+character_set_server = utf8mb4
+collation-server = utf8mb4_unicode_ci
+federated = 1
+innodb_file_per_table = 1
+innodb_flush_log_at_trx_commit = 1
+innodb_flush_method = O_DIRECT  # O_DSYNC for windows
+innodb_locks_unsafe_for_binlog = 0
+innodb_log_buffer_size = 32M
+innodb_support_xa = 0
+innodb_thread_concurrency = 34
+max_connect_errors = 5000
+max_error_count = 128
+max_heap_table_size = 1G
+max_tmp_tables = 128
+query_cache_limit = 500M
+query_cache_size = 700M
+query_cache_type = 1
+replicate-ignore-db = test
+server-id = 1101
+skip-external-locking
+skip-name-resolve = 1
+sync_binlog = 1
+tmp_table_size = 1G
+transaction-isolation = READ-COMMITTED
+group_concat_max_len=10240
+
+# PROD
+binlog_format = ROW
+expire_logs_days = 10
+general_log_file = /var/log/mysql/mysqld.log
+innodb_additional_mem_pool_size = 1G
+innodb_buffer_pool_size = 4G  # 10G
+innodb_log_file_size = 768M
+key_buffer_size = 16M
+log_bin = true
+log_error = /var/log/mysql/safe-err.log
+max_connections = 2500
+max_binlog_size = 100M
+max_allowed_packet = 16M  # max_long_data_size is deprecated!
+myisam_recover_options = BACKUP
+open_files_limit = 12500    # doesn't work!
+relay_log = mysqld-relay-bin
+secure_file_priv = ''
+slow_query_log = 1
+slow_query_log_file = /var/log/mysql/slow-queries.log
+thread_cache_size = 8
+thread_stack = 196608
+wait_timeout = 28800

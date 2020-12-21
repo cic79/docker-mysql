@@ -1,0 +1,6 @@
+/.idea/
+/mysql/log/*.log
+/mysql/SAVE/
+/portainer/
+*.DS_Store
+/.env
