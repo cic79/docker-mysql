@@ -32,12 +32,14 @@ services:
     labels:
       - "traefik.enable=false"
   phpmyadmin:
-    image: "phpmyadmin/phpmyadmin"
-    container_name: prototype_phpmyadmin
+    image: "phpmyadmin/phpmyadmin:latest"
+    container_name: general_phpmyadmin
     environment:
-      PMA_HOST: mysql
-      MYSQL_ROOT_PASSWORD: password
+      - PMA_ARBITRARY=1
+    privileged: true
     volumes:
+      - /sessions
+      - ./phpmyadmin/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php
       - ./phpmyadmin/php.ini:/usr/local/etc/php/php.ini
     ports:
       - "127.0.0.1:8083:80"
