@@ -74,6 +74,7 @@ function stop {
     if [[ "$1" == "" ]]; then
         # Stop and remove containers, networks, images, and volumes
         docker-compose rm -f -s
+        docker network prune -f
     else
         # Stop and remove containers, networks, images, and volumes
         docker-compose rm -f -s "$1"
